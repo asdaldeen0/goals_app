@@ -1,17 +1,41 @@
-# goals
+# 📓 أهدافي — دفتر الإنجاز (The Achievement Ledger)
 
-A new Flutter project.
+تطبيق شخصي لتتبع الأهداف وتوثيق الإنجازات اليومية، مبني بإطار عمل **Flutter** ومستوحى بصرياً من هوية "دفاتر الحسابات والأرشيف العتيق" (ورق دافئ، حبر كحلي، ولمسات برونزية وختم شمعي).
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🌟 مميزات التطبيق
 
-A few resources to get you started if this is your first Flutter project:
+- **تتبع الأهداف والمهام الفرعية:** إدارة كاملة للأهداف الحالية والمكتملة والمتأخرة.
+- **إحصائيات الإنجاز:** بطاقات ورسوم تقدم مخصصة لمتابعة نسبة التقدم الفعلي.
+- **نظام تنبيهات ذكي:** تذكيرات مجدولة يومية باستخدام `flutter_local_notifications`.
+- **هوية بصرية فريدة (Ledger Aesthetic):** تصميم هادئ ودافئ مريح للعين بعيداً عن ألوان النيون المعتادة.
+- **حفظ تفضيلات المستخدم محلياً:** إدارة بيانات المستخدم والإشعارات عبر `GetStorage`.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠️ التقنيات المستخدمة (Tech Stack)
+
+- **Framework:** Flutter
+- **Architecture:** Clean Architecture
+- **State Management:** GetX
+- **Local Storage:** GetStorage
+- **Notifications:** flutter_local_notifications & timezone
+- **Design System:** Custom Design Palette (`AppColors` & `AppTypography`)
+
+---
+
+## 🚀 تشغيل المشروع محلياً
+
+```bash
+# استنساخ المستودع
+git clone [https://github.com/asdaldeen0/goals_app.git](https://github.com/asdaldeen0/goals_app.git)
+
+# الانتقال للمجلد
+cd goals_app
+
+# تحميل الحزم
+flutter pub get
+
+# تشغيل التطبيق
+flutter run

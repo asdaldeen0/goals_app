@@ -5,10 +5,7 @@ import 'package:goals/core/app_typography.dart';
 class DeveloperBioCard extends StatelessWidget {
   final String bio;
 
-  const DeveloperBioCard({
-    super.key,
-    required this.bio,
-  });
+  const DeveloperBioCard({super.key, required this.bio});
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +48,9 @@ class DeveloperBioCard extends StatelessWidget {
           Text(
             bio,
             style: AppTypography.body.copyWith(
-              fontSize: 13,
-              height: 1.6,
-              color: AppColors.textSecondary,
+              fontSize: 14,
+              height: 2,
+              color: AppColors.inkDark,
               fontWeight: FontWeight.w500,
             ),
           ),

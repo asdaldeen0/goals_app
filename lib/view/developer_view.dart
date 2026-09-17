@@ -50,9 +50,7 @@ class DeveloperView extends StatelessWidget {
             ),
           ),
           centerTitle: true,
-          actions: const [
-            SizedBox(width: 56),
-          ],
+          actions: const [SizedBox(width: 56)],
         ),
         body: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),

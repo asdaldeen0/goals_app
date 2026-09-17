@@ -5,6 +5,7 @@ import 'package:goals/controllers/goal_controller.dart';
 import 'package:goals/core/app_colors.dart';
 import 'package:goals/core/services/notification_service.dart';
 import 'package:goals/view/home_dashboard_view.dart';
+import 'package:goals/view/splash_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
@@ -19,7 +20,7 @@ void main() async {
 
   WidgetsBinding.instance.addPostFrameCallback((_) async {
     await NotificationService.requestPermissions();
-    await NotificationService.scheduleDailyReminder(hour: 20, minute: 30);
+    await NotificationService.scheduleDailyReminder(hour: 20, minute: 00);
   });
 }
 
@@ -33,8 +34,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         fontFamily: GoogleFonts.ibmPlexSansArabic().fontFamily,
-        textTheme:
-            GoogleFonts.ibmPlexSansArabicTextTheme(Theme.of(context).textTheme),
+        textTheme: GoogleFonts.ibmPlexSansArabicTextTheme(
+          Theme.of(context).textTheme,
+        ),
         scaffoldBackgroundColor: AppColors.background,
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColors.ink,
@@ -51,7 +53,7 @@ class MyApp extends StatelessWidget {
           foregroundColor: AppColors.white,
         ),
       ),
-      home:  HomeDashboardView(),
+      home: SplashView(),
     );
   }
 }

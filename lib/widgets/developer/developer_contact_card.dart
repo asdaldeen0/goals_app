@@ -156,12 +156,14 @@ class DeveloperContactCard extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: AppColors.ink.withValues(alpha: 0.12),
+                        color: AppColors.personalCategory.withValues(
+                          alpha: 0.12,
+                        ),
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: const FaIcon(
                         FontAwesomeIcons.instagram,
-                        color: AppColors.ink,
+                        color: AppColors.personalCategory,
                         size: 22,
                       ),
                     ),
@@ -175,7 +177,7 @@ class DeveloperContactCard extends StatelessWidget {
                             style: AppTypography.headline.copyWith(
                               fontSize: 14.5,
                               fontWeight: FontWeight.w700,
-                              color: AppColors.textMain,
+                              color: AppColors.personalCategory,
                             ),
                           ),
                           const SizedBox(height: 3),
@@ -184,7 +186,7 @@ class DeveloperContactCard extends StatelessWidget {
                             style: AppTypography.bodySecondary.copyWith(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
-                              color: AppColors.ink,
+                              color: AppColors.personalCategory,
                             ),
                           ),
                         ],
@@ -193,7 +195,7 @@ class DeveloperContactCard extends StatelessWidget {
                     const Icon(
                       Icons.arrow_back_ios_new_rounded,
                       size: 14,
-                      color: AppColors.textMuted,
+                      color: AppColors.personalCategory,
                     ),
                   ],
                 ),

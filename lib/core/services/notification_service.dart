@@ -9,28 +9,35 @@ import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 class NotificationService {
-  final GoalController controllernog = Get.find<GoalController>();
   static final FlutterLocalNotificationsPlugin _notificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
   static const int _dailyReminderId = 1001;
+
   static const String _channelId = 'daily_goals_reminder_channel';
+
   static const String _channelName = 'تذكيرات الأهداف اليومية';
+
   static const String _channelDescription =
       'إشعارات يومية تشجيعية لتذكيرك بمتابعة وتحديث أهدافك وإنجازاتك';
 
   static Future<void> init() async {
     debugPrint('🔔 NotificationService: بدء التهيئة');
+
     try {
       tz.initializeTimeZones();
 
       try {
         final timeZoneInfo = await FlutterTimezone.getLocalTimezone();
+
         final String timeZoneName = timeZoneInfo.identifier;
+
         tz.setLocalLocation(tz.getLocation(timeZoneName));
+
         debugPrint('🌍 Timezone: $timeZoneName');
       } catch (e) {
         debugPrint('⚠️ تعذر تحديد المنطقة الزمنية بدقة: $e');
+
         tz.setLocalLocation(tz.getLocation('UTC'));
       }
 
@@ -55,6 +62,7 @@ class NotificationService {
           debugPrint('🔔 ضغط المستخدم على الإشعار: ${response.payload}');
         },
       );
+
       debugPrint('✅ NotificationService: تمت التهيئة بنجاح');
     } catch (e) {
       debugPrint('❌ خطأ في تهيئة NotificationService: $e');
@@ -63,27 +71,41 @@ class NotificationService {
 
   static Future<bool> requestPermissions() async {
     debugPrint('🔐 طلب صلاحية الإشعارات');
-    if (kIsWeb) return false;
+
+    if (kIsWeb) {
+      return false;
+    }
 
     if (Platform.isAndroid) {
       final androidImpl = _notificationsPlugin
           .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin
           >();
-      final granted = await androidImpl?.requestNotificationsPermission();
+
+      final bool? granted = await androidImpl?.requestNotificationsPermission();
+
+      debugPrint('🔐 صلاحية Android: $granted');
+
       return granted ?? false;
-    } else if (Platform.isIOS) {
+    }
+
+    if (Platform.isIOS) {
       final iosImpl = _notificationsPlugin
           .resolvePlatformSpecificImplementation<
             IOSFlutterLocalNotificationsPlugin
           >();
-      final granted = await iosImpl?.requestPermissions(
+
+      final bool? granted = await iosImpl?.requestPermissions(
         alert: true,
         badge: true,
         sound: true,
       );
+
+      debugPrint('🔐 صلاحية iOS: $granted');
+
       return granted ?? false;
     }
+
     return false;
   }
 
@@ -106,22 +128,24 @@ class NotificationService {
   }
 
   static Future<void> scheduleDailyReminder({
-    int hour = 20,
-    int minute = 30,
-     dynamic controllernog,
+    int hour = 18,
+    int minute = 40,
   }) async {
     try {
       await cancelDailyReminder();
 
-       String trimmedName = controllernog.userName.value.trim();
+      final GoalController controller = Get.find<GoalController>();
+
+      final String trimmedName = controller.userName.value.trim();
+
       final String greetingName = trimmedName.isNotEmpty ? trimmedName : 'بطل';
 
       final tz.TZDateTime scheduledDate = _nextInstanceOfTime(hour, minute);
 
       await _notificationsPlugin.zonedSchedule(
         _dailyReminderId,
-        'دفتر الإنجاز بانتظارك ✍️',
-        'يا $greetingName، راجع خطوات أهدافك لليوم وثبّت إنجازاتك الجديدة!',
+        'هدفك ينتظرك ',
+        'يا $greetingName، أنجز خطوة صغيرة اليوم... فكل خطوة تقرّبك من حلمك!',
         scheduledDate,
         _getNotificationDetails(),
         androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
@@ -129,8 +153,10 @@ class NotificationService {
             UILocalNotificationDateInterpretation.absoluteTime,
         matchDateTimeComponents: DateTimeComponents.time,
       );
+
       debugPrint(
-        '✅ تم تفعيل التذكير اليومي باسم ($greetingName) للساعة $hour:$minute',
+        '✅ تم تفعيل التذكير اليومي '
+        'باسم ($greetingName) للساعة $hour:$minute',
       );
     } catch (e) {
       debugPrint('❌ خطأ في جدولة الإشعار: $e');
@@ -148,6 +174,8 @@ class NotificationService {
         body,
         _getNotificationDetails(),
       );
+
+      debugPrint('✅ تم إرسال الإشعار الفوري');
     } catch (e) {
       debugPrint('❌ خطأ في إرسال الإشعار الفوري: $e');
     }
@@ -156,6 +184,7 @@ class NotificationService {
   static Future<void> cancelDailyReminder() async {
     try {
       await _notificationsPlugin.cancel(_dailyReminderId);
+
       debugPrint('🗑️ تم إلغاء التذكير اليومي');
     } catch (e) {
       debugPrint('❌ خطأ في إلغاء التذكير: $e');
@@ -164,6 +193,7 @@ class NotificationService {
 
   static tz.TZDateTime _nextInstanceOfTime(int hour, int minute) {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+
     tz.TZDateTime scheduledDate = tz.TZDateTime(
       tz.local,
       now.year,
@@ -176,6 +206,7 @@ class NotificationService {
     if (scheduledDate.isBefore(now)) {
       scheduledDate = scheduledDate.add(const Duration(days: 1));
     }
+
     return scheduledDate;
   }
 }

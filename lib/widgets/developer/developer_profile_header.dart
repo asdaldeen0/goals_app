@@ -17,7 +17,7 @@ class DeveloperProfileHeader extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
       decoration: BoxDecoration(
-        color: AppColors.cardSurface,
+        color: AppColors.inkDark,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: AppColors.border, width: 1.2),
         boxShadow: [
@@ -30,24 +30,6 @@ class DeveloperProfileHeader extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Container(
-            width: 80,
-            height: 80,
-            decoration: BoxDecoration(
-              color: AppColors.ink.withValues(alpha: 0.12),
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: AppColors.ink.withValues(alpha: 0.3),
-                width: 2,
-              ),
-            ),
-            child: const Icon(
-              Icons.person_rounded,
-              color: AppColors.ink,
-              size: 42,
-            ),
-          ),
-
           const SizedBox(height: 14),
 
           Text(
@@ -55,7 +37,7 @@ class DeveloperProfileHeader extends StatelessWidget {
             style: AppTypography.displayMedium.copyWith(
               fontSize: 22,
               fontWeight: FontWeight.w700,
-              color: AppColors.textMain,
+              color: AppColors.background,
             ),
           ),
 
@@ -66,7 +48,7 @@ class DeveloperProfileHeader extends StatelessWidget {
             style: AppTypography.bodySecondary.copyWith(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: AppColors.textSecondary,
+              color: AppColors.brass,
             ),
           ),
 
@@ -90,7 +72,7 @@ class DeveloperProfileHeader extends StatelessWidget {
                 Text(
                   'متاح للأفكار والاقتراحات',
                   style: AppTypography.label.copyWith(
-                    color: AppColors.completed,
+                    color: AppColors.seal,
                     fontSize: 11.5,
                     fontWeight: FontWeight.w700,
                   ),

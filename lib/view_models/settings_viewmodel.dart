@@ -31,7 +31,7 @@ class SettingsViewModel extends GetxController {
     super.onInit();
     nameInputController = TextEditingController(text: userName.value);
     isNotificationsEnabled.value = _repository.loadNotificationsEnabled();
-    
+
     if (isNotificationsEnabled.value) {
       NotificationService.scheduleDailyReminder();
     }
@@ -56,11 +56,11 @@ class SettingsViewModel extends GetxController {
     }
 
     await _controller.updateUserName(trimmed);
-    
+
     if (isNotificationsEnabled.value) {
       await NotificationService.scheduleDailyReminder();
     }
-    
+
     Get.back();
 
     Get.snackbar(
