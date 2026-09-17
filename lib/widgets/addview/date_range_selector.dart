@@ -25,6 +25,7 @@ class DateRangeSelector extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(14),
       child: Container(
+        width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         decoration: BoxDecoration(
           color: AppColors.background,
@@ -32,16 +33,14 @@ class DateRangeSelector extends StatelessWidget {
           border: Border.all(color: AppColors.border),
         ),
         child: Center(
-          child: Expanded(
-            child: Text(
-              '  من     \u200E$startFormatted      إلى         \u200E$endFormatted ',
-              textDirection: TextDirection.rtl,
-              textAlign: TextAlign.right,
-              style: AppTypography.ledgerNumber.copyWith(
-                fontSize: 13.5,
-                fontWeight: FontWeight.w700,
-                color: AppColors.textMain,
-              ),
+          child: Text(
+            '  من     \u200E$startFormatted      إلى         \u200E$endFormatted ',
+            textDirection: TextDirection.rtl,
+            textAlign: TextAlign.center,
+            style: AppTypography.ledgerNumber.copyWith(
+              fontSize: 13.5,
+              fontWeight: FontWeight.w700,
+              color: AppColors.textMain,
             ),
           ),
         ),

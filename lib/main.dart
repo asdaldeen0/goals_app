@@ -4,12 +4,13 @@ import 'package:get_storage/get_storage.dart';
 import 'package:goals/controllers/goal_controller.dart';
 import 'package:goals/core/app_colors.dart';
 import 'package:goals/core/services/notification_service.dart';
-import 'package:goals/view/home_dashboard_view.dart';
 import 'package:goals/view/splash_view.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await initializeDateFormatting('ar', null);
 
   await GetStorage.init();
   await NotificationService.init();
@@ -31,12 +32,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      locale: const Locale('ar'),
+      fallbackLocale: const Locale('ar'),
       theme: ThemeData(
         useMaterial3: true,
-        fontFamily: GoogleFonts.ibmPlexSansArabic().fontFamily,
-        textTheme: GoogleFonts.ibmPlexSansArabicTextTheme(
-          Theme.of(context).textTheme,
-        ),
+        fontFamily: 'IBMPlexSansArabic',
         scaffoldBackgroundColor: AppColors.background,
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColors.ink,
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
           foregroundColor: AppColors.white,
         ),
       ),
-      home: SplashView(),
+      home: const SplashView(),
     );
   }
 }

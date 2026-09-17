@@ -10,8 +10,9 @@ class DeveloperViewModel extends GetxController {
       'شغوف ببناء وتطوير تطبيقات جوال متكاملة تجمع بين الأداء العالي والتصميم العصري وتجربة المستخدم السلسة.';
 
   final String instagramHandle = '@asdaldeen0';
-  final String instagramUrl = 'https://instagram.com';
-  final String whatsappNumber = '+967770000000';
+  final String instagramUrl =
+      'https://www.instagram.com/asd_aldeen0?stkn=MmV3bnhlbTViOGNv';
+  final String whatsappNumber = '+967781559572';
 
   Future<void> openInstagram() async {
     final uri = Uri.parse(instagramUrl);
